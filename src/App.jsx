@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 /* eslint-disable-next-line no-unused-vars */
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, ChevronDown, Terminal, Database, BrainCircuit, ExternalLink, ArrowRight, Code2, LineChart, Sparkles, Package, Monitor, Briefcase, Sun, Moon, Download } from "lucide-react";
+import { Mail, ChevronDown, Terminal, Database, BrainCircuit, ExternalLink, ArrowRight, Code2, LineChart, Sparkles, Package, Monitor, Briefcase, Sun, Moon, Download, Eye, X } from "lucide-react";
 import { FaLinkedin } from "react-icons/fa";
 
 // Global Animation Variants
@@ -121,6 +121,7 @@ export default function App() {
   const [activeSection, setActiveSection] = useState("home");
   const [scrolled, setScrolled] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [showResume, setShowResume] = useState(false);
 
   useEffect(() => {
     if (isDarkMode) {
@@ -148,6 +149,14 @@ export default function App() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (showResume) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [showResume]);
 
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -221,18 +230,17 @@ export default function App() {
             </button>
 
             <div className="relative group">
-              <a 
-                href="/resume.pdf" 
-                download="Muhammad_Ehab_Sikandar_Resume.pdf"
+              <button 
+                onClick={() => setShowResume(true)}
                 className="p-2 rounded-full bg-white dark:bg-dark-surface border border-brand-primary/10 dark:border-dark-highlight/20 text-brand-accent dark:text-dark-accent hover:text-brand-secondary dark:hover:text-dark-secondary transition-colors duration-500 shadow-sm flex items-center justify-center"
-                aria-label="Download Resume"
+                aria-label="View Resume"
               >
-                <Download className="w-5 h-5" />
-              </a>
+                <Eye className="w-5 h-5" />
+              </button>
               
               {/* Tooltip */}
               <div className="absolute top-full right-0 mt-2 px-3 py-1 bg-brand-primary dark:bg-dark-surface text-white dark:text-dark-secondary text-xs font-medium rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-lg border border-brand-primary/10 dark:border-dark-highlight/20">
-                download resume
+                view resume
                 <div className="absolute -top-1 right-3 w-2 h-2 bg-brand-primary dark:bg-dark-surface rotate-45 border-l border-t border-brand-primary/10 dark:border-dark-highlight/20" />
               </div>
             </div>
@@ -349,7 +357,7 @@ export default function App() {
                 <div className="w-full glass-card p-8 group-hover:border-brand-secondary/30 dark:group-hover:border-dark-secondary/50 transition-colors">
                    <p className="text-brand-secondary dark:text-dark-secondary font-mono text-base mb-2 transition-colors duration-500">Apr 2025 — Present</p>
                   <h3 className="font-bold text-2xl text-brand-primary dark:text-dark-primary mb-1 transition-colors duration-500">AI Research Assistant</h3>
-                  <p className="text-brand-primary dark:text-dark-primary font-medium mb-6 transition-colors duration-500">CodeBricks</p>
+                  <p className="text-brand-primary dark:text-dark-primary font-medium mb-6 transition-colors duration-500">CodeBricks Global</p>
                    <ul className="space-y-3 text-brand-accent dark:text-dark-accent text-base font-light leading-relaxed list-disc list-inside marker:text-brand-secondary/50 dark:marker:text-dark-secondary/70 transition-colors duration-500">
                     <li>Conduct survey analytics on consumer research datasets to extract actionable insights on product preferences, flavor trends, and category performance.</li>
                     <li>Supported end-to-end survey analytics projects, handling data cleaning, preprocessing, analysis.</li>
@@ -568,6 +576,65 @@ export default function App() {
         </footer>
 
       </main>
+
+      {/* RESUME MODAL */}
+      <AnimatePresence>
+        {showResume && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10"
+          >
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowResume(false)}
+              className="absolute inset-0 bg-brand-primary/20 dark:bg-dark-bg/60 backdrop-blur-md cursor-pointer"
+            />
+
+            {/* Modal Content */}
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              className="relative w-full max-w-5xl h-[85vh] md:h-[90vh] bg-white dark:bg-dark-surface rounded-2xl shadow-2xl overflow-hidden border border-brand-primary/10 dark:border-dark-highlight/20 flex flex-col"
+            >
+              {/* Floating Close Button */}
+              <button
+                onClick={() => setShowResume(false)}
+                className="absolute top-4 right-4 z-[110] p-2 rounded-full bg-black/20 hover:bg-black/40 dark:bg-white/10 dark:hover:bg-white/20 backdrop-blur-md text-white transition-all shadow-lg border border-white/10"
+                aria-label="Close"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {/* PDF Viewer */}
+              <div className="flex-1 w-full bg-gray-100 dark:bg-dark-bg overflow-hidden relative">
+                <iframe
+                  src="/resume.pdf#toolbar=0&navpanes=0&view=FitH"
+                  className="w-full h-full border-none"
+                  title="Resume PDF"
+                />
+                
+                {/* Download Button - Bottom Right */}
+                <div className="absolute bottom-6 right-8">
+                  <a
+                    href="/resume.pdf"
+                    download="Muhammad_Ehab_Sikandar_Resume.pdf"
+                    className="flex items-center gap-2 px-6 py-3 rounded-xl bg-brand-secondary dark:bg-dark-secondary text-white dark:text-dark-bg shadow-xl hover:shadow-2xl hover:-translate-y-1 active:scale-95 transition-all group"
+                  >
+                    <Download className="w-5 h-5" />
+                    <span className="font-semibold">Download</span>
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
