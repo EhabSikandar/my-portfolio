@@ -178,7 +178,7 @@ export default function App() {
           opacity: [0.1, 0.2, 0.1],
         }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="fixed top-0 left-1/4 w-[800px] h-[800px] bg-brand-secondary/30 dark:bg-dark-secondary/20 blur-[150px] rounded-full pointer-events-none z-0 transition-colors duration-500" 
+        className={`fixed top-0 left-1/4 w-[800px] h-[800px] bg-brand-secondary/30 dark:bg-dark-secondary/20 blur-[150px] rounded-full pointer-events-none z-0 transition-all duration-700 ${showResume ? 'opacity-0 scale-90' : 'opacity-100'}`} 
       />
       <motion.div 
         animate={{ 
@@ -186,11 +186,11 @@ export default function App() {
           opacity: [0.1, 0.15, 0.1],
         }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="fixed bottom-0 right-1/4 w-[600px] h-[600px] bg-brand-primary/20 dark:bg-dark-primary/10 blur-[150px] rounded-full pointer-events-none z-0 transition-colors duration-500" 
+        className={`fixed bottom-0 right-1/4 w-[600px] h-[600px] bg-brand-primary/20 dark:bg-dark-primary/10 blur-[150px] rounded-full pointer-events-none z-0 transition-all duration-700 ${showResume ? 'opacity-0 scale-90' : 'opacity-100'}`} 
       />
 
       {/* NAVBAR */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-white/80 dark:bg-dark-surface/80 backdrop-blur-xl border-b border-brand-primary/10 dark:border-dark-highlight/10 shadow-sm' : 'bg-transparent py-6'}`}>
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${showResume ? 'opacity-0 pointer-events-none' : scrolled ? 'bg-white/80 dark:bg-dark-surface/80 backdrop-blur-xl border-b border-brand-primary/10 dark:border-dark-highlight/10 shadow-sm' : 'bg-transparent py-6'}`}>
         <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
           <button onClick={() => scrollTo("home")} className="font-semibold text-xl tracking-tighter flex items-center gap-2 group">
             <Terminal className="w-5 h-5 text-brand-secondary dark:text-dark-secondary group-hover:text-brand-primary dark:group-hover:text-dark-primary transition-colors" />
@@ -249,7 +249,7 @@ export default function App() {
       </nav>
 
       {/* MAIN CONTENT */}
-      <main className="relative z-10">
+      <main className={`relative z-10 transition-all duration-500 ${showResume ? 'blur-sm grayscale-[0.2] opacity-50' : ''}`}>
         
         {/* HERO */}
         <section id="home" className="min-h-screen flex flex-col justify-center items-center text-center px-6 relative pt-20">
@@ -592,7 +592,7 @@ export default function App() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setShowResume(false)}
-              className="absolute inset-0 bg-brand-primary/20 dark:bg-dark-bg/60 backdrop-blur-md cursor-pointer"
+              className="absolute inset-0 bg-brand-primary/40 dark:bg-dark-bg/90 cursor-pointer [transform:translateZ(0)]"
             />
 
             {/* Modal Content */}
@@ -600,7 +600,7 @@ export default function App() {
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="relative w-full max-w-5xl h-[85vh] md:h-[90vh] bg-white dark:bg-dark-surface rounded-2xl shadow-2xl overflow-hidden border border-brand-primary/10 dark:border-dark-highlight/20 flex flex-col"
+              className="relative w-full max-w-5xl h-[85vh] md:h-[90vh] bg-white dark:bg-dark-surface rounded-2xl shadow-2xl overflow-hidden border border-brand-primary/10 dark:border-dark-highlight/20 flex flex-col isolation-auto [transform:translateZ(0)]"
             >
               {/* Floating Close Button */}
               <button
@@ -613,11 +613,17 @@ export default function App() {
 
               {/* PDF Viewer */}
               <div className="flex-1 w-full bg-gray-100 dark:bg-dark-bg overflow-hidden relative">
-                <iframe
-                  src="/resume.pdf#toolbar=0&navpanes=0&view=FitH"
+                <object
+                  data="/resume.pdf#toolbar=0&navpanes=0&view=FitH"
+                  type="application/pdf"
                   className="w-full h-full border-none"
-                  title="Resume PDF"
-                />
+                >
+                  <iframe
+                    src="/resume.pdf#toolbar=0&navpanes=0&view=FitH"
+                    className="w-full h-full border-none"
+                    title="Resume PDF"
+                  />
+                </object>
                 
                 {/* Download Button - Bottom Right */}
                 <div className="absolute bottom-6 right-8">
