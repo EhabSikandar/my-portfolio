@@ -614,12 +614,12 @@ export default function App() {
               {/* PDF Viewer */}
               <div className="flex-1 w-full bg-gray-100 dark:bg-dark-bg overflow-hidden relative">
                 <object
-                  data="/resume.pdf#toolbar=0&navpanes=0&view=FitH"
+                  data="/Ehab's Resume.pdf#toolbar=0&navpanes=0&view=FitH"
                   type="application/pdf"
                   className="w-full h-full border-none"
                 >
                   <iframe
-                    src="/resume.pdf#toolbar=0&navpanes=0&view=FitH"
+                    src="/Ehab's Resume.pdf#toolbar=0&navpanes=0&view=FitH"
                     className="w-full h-full border-none"
                     title="Resume PDF"
                   />
