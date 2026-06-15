@@ -1,16 +1,41 @@
-# React + Vite
+# Muhammad Ehab Sikandar - Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Data Scientist | Analytics
 
-Currently, two official plugins are available:
+Bridging the gap between complex raw data and AI solutions. I build machine learning systems that drive measurable strategic impact.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### 🌟 About Me
+I am passionate about transforming datasets into intelligence. With expertise spanning advanced analytics, traditional machine learning, and deep learning architecture, I solve real-world problems. Whether engineering predictive models, developing LLM-powered applications, or extracting strategic insights from data, I work at the intersection of technical innovation and business strategy.
 
-## React Compiler
+### 💼 Experience
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**AI Research Assistant @ CodeBricks Global** *(Apr 2025 — Present)*
+- Conducted survey analytics on consumer research datasets using R and Python.
+- Performed statistical analysis and multivariate techniques (PLSR, PCA, Ideal Profiling).
+- Built predictive models and automated workflows.
+- Created charts and visualizations in Power BI.
 
-## Expanding the ESLint configuration
+**Data Science Intern @ VentureDive** *(Jan 2025 — Mar 2025)*
+- **FinLLM Project:** Developed a system for LLMs to query tabular CSV data.
+- **Shelf Sight Project:** Supported the development of a deep learning-based object detection system using RetinaNet.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 🛠️ Technical Skills
+- **Programming & Database:** Python, SQL, R
+- **Machine Learning & AI:** LLMs, Deep Learning, Random Forest, Regression, NLP, OCR
+- **Statistical Analysis:** Multivariate Analysis, PCA, PLSR, Hypothesis Testing
+- **Frameworks & Libraries:** Scikit-learn, PyTorch, Transformers, Flask
+- **Visualization & Tools:** Power BI, SPSS, Advanced Excel, NVIDIA Omniverse
+
+### 🚀 Featured Projects & Case Studies
+- **Consumer Preference Driver Analysis:** Identifying key product attributes driving consumer liking.
+- **Ideal Profiling Analysis:** Determining optimal sensory attribute ranges.
+- **Consumer Segmentation & Preference Mapping:** Multivariate analysis to identify consumer preference segments.
+- **Survey Analytics Workflow Automation:** Automating survey data cleaning and preprocessing.
+- **LibraBot:** An entirely offline, intelligent virtual library assistant using Local LLMs and NVIDIA Omniverse.
+
+### 📫 Let's Connect
+- **Email:** ehab.sikandar@yahoo.com
+- **LinkedIn:** [Muhammad Ehab Sikandar](https://www.linkedin.com/in/muhammad-ehab-sikandar)
+
+---
+*This portfolio is built with React, Vite, and Tailwind CSS.*
